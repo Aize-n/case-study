@@ -25,7 +25,7 @@
 
 <style>
 :root{
-  --bg:#FBFAF7;
+  --bg:#FAF5EB;
   --surface:#FFFFFF;
   --ink:#1A1A18;
   --muted:#6E6E66;
@@ -34,9 +34,9 @@
   --accent-mid:#0F6E56;
   --accent-deep:#063A30;
   --gold:#A9700F;
-  --line:#E7E5DF;
-  --line-soft:#EFEDE7;
-  --card:#F4F2EC;
+  --line:#E7E1D5;
+  --line-soft:#EFE9DD;
+  --card:#F3EEE1;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -56,47 +56,59 @@ body{
 }
 .atmosphere span{
   position:absolute;border-radius:50%;
-  filter:blur(70px);will-change:transform;
+  filter:blur(85px);will-change:transform;
 }
 .atmosphere .aura1{
-  width:46vw;height:46vw;min-width:340px;min-height:340px;
-  top:-12vh;left:-8vw;opacity:.65;
-  background:radial-gradient(circle at 50% 50%,#F1E6D0,rgba(241,230,208,0) 70%);
-  animation:drift1 38s ease-in-out infinite;
+  width:52vw;height:52vw;min-width:400px;min-height:400px;
+  top:-16vh;left:-12vw;opacity:.85;
+  background:radial-gradient(circle at 50% 50%,#F1E1BF,rgba(241,225,191,0) 68%);
+  animation:drift1 36s ease-in-out infinite;
 }
 .atmosphere .aura2{
-  width:42vw;height:42vw;min-width:320px;min-height:320px;
-  top:34%;right:-12vw;opacity:.55;
-  background:radial-gradient(circle at 50% 50%,#EFE8DC,rgba(239,232,220,0) 70%);
-  animation:drift2 46s ease-in-out infinite;
+  width:46vw;height:46vw;min-width:360px;min-height:360px;
+  top:28%;right:-14vw;opacity:.75;
+  background:radial-gradient(circle at 50% 50%,#EAD6AE,rgba(234,214,174,0) 68%);
+  animation:drift2 44s ease-in-out infinite;
 }
 .atmosphere .aura3{
-  width:54vw;height:54vw;min-width:380px;min-height:380px;
-  bottom:-16vh;left:18vw;opacity:.5;
-  background:radial-gradient(circle at 50% 50%,rgba(15,110,86,.07),rgba(15,110,86,0) 70%);
-  animation:drift3 54s ease-in-out infinite;
+  width:60vw;height:60vw;min-width:440px;min-height:440px;
+  bottom:-20vh;left:12vw;opacity:.6;
+  background:radial-gradient(circle at 50% 50%,rgba(15,110,86,.11),rgba(15,110,86,0) 68%);
+  animation:drift3 52s ease-in-out infinite;
 }
-@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(46px,34px,0) scale(1.09)}}
-@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.04)}50%{transform:translate3d(-40px,28px,0) scale(1)}}
-@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(34px,-36px,0) scale(1.07)}}
+.atmosphere .aura4{
+  width:42vw;height:42vw;min-width:320px;min-height:320px;
+  top:46%;left:-10vw;opacity:.55;
+  background:radial-gradient(circle at 50% 50%,#F2E6CB,rgba(242,230,203,0) 68%);
+  animation:drift1 50s ease-in-out infinite reverse;
+}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(50px,38px,0) scale(1.1)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.05)}50%{transform:translate3d(-44px,30px,0) scale(1)}}
+@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(38px,-40px,0) scale(1.08)}}
+
+/* fine grain — smooths gradient banding and gives a warm paper texture */
+.grain{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
 .page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 26px 130px}
 
 /* ---- masthead ---- */
 .masthead{
-  display:flex;align-items:center;gap:15px;
-  padding:48px 0 0;
+  display:flex;align-items:center;gap:16px;
+  padding:54px 0 8px;
 }
 .mark{
-  width:38px;height:38px;border-radius:10px;
+  width:42px;height:42px;border-radius:11px;
   background:var(--accent);color:var(--bg);
   display:grid;place-items:center;flex:0 0 auto;
-  font-family:'Newsreader',serif;font-size:23px;line-height:1;
+  font-family:'Newsreader',serif;font-size:25px;line-height:1;
   padding-bottom:2px;
 }
-.wordmark{display:flex;flex-direction:column;gap:4px;line-height:1.1}
-.wordmark .name{font-size:14.5px;font-weight:500;letter-spacing:.2px}
-.wordmark .role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--faint)}
+.wordmark{display:flex;flex-direction:column;gap:6px;line-height:1}
+.wordmark .name{font-size:15px;font-weight:500;letter-spacing:.2px}
+.wordmark .role{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--faint)}
 
 /* ---- eyebrows ---- */
 .eyebrow{
@@ -254,7 +266,8 @@ a:focus-visible{outline:2px solid var(--accent-mid);outline-offset:3px;border-ra
 </style>
 </head>
 <body>
-<div class="atmosphere" aria-hidden="true"><span class="aura1"></span><span class="aura2"></span><span class="aura3"></span></div>
+<div class="atmosphere" aria-hidden="true"><span class="aura1"></span><span class="aura2"></span><span class="aura3"></span><span class="aura4"></span></div>
+<div class="grain" aria-hidden="true"></div>
 <div class="page">
 
   <header class="masthead load d1">
@@ -291,8 +304,6 @@ a:focus-visible{outline:2px solid var(--accent-mid);outline-offset:3px;border-ra
       <div class="metric"><div class="metric-val">50+</div><div class="metric-lbl">GB migrated</div></div>
     </div>
   </section>
-
-  <div class="rule reveal"></div>
 
   <section class="section reveal">
     <span class="eyebrow eyebrow--muted">What was done</span>
