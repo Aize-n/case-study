@@ -3,116 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Case Study — Email Migration & Domain Unification</title>
-  <meta property="og:type" content="website">
+<title>Case Study — Email Migration &amp; Domain Unification</title>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23085041'/><text x='50' y='73' font-size='64' text-anchor='middle' fill='%23FBFAF7' font-family='Georgia,serif'>L</text></svg>">
+
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://aize-n.github.io/case-study/">
 <meta property="og:title" content="Google Workspace Migration & Domain Recovery — Case Study">
-<meta property="og:description" content="A regional hotel group recovered broken email and unified two domains under Google Workspace. 13 mailboxes, 100+ GB, zero data loss.">
+<meta property="og:description" content="A regional hotel group recovered broken email and unified two domains under Google Workspace. 13 mailboxes, 50+ GB, zero data loss.">
 <meta property="og:image" content="https://aize-n.github.io/case-study/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Google Workspace Migration & Domain Recovery — Case Study">
-<meta name="twitter:description" content="13 mailboxes, 100+ GB, two domains unified — zero data loss, zero downtime.">
+<meta name="twitter:description" content="13 mailboxes, 50+ GB, two domains unified — zero data loss, zero downtime.">
 <meta name="twitter:image" content="https://aize-n.github.io/case-study/preview.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#FAFAF8;--surface:#fff;--text:#1A1A18;--muted:#6B6B63;--accent:#085041;--accent-mid:#0F6E56;--border:#E5E4E0;--gold:#BA7517;--card-bg:#F5F4F0}
+:root{
+  --bg:#FBFAF7;
+  --surface:#FFFFFF;
+  --ink:#1A1A18;
+  --muted:#6E6E66;
+  --faint:#9A9A90;
+  --accent:#085041;
+  --accent-mid:#0F6E56;
+  --accent-deep:#063A30;
+  --gold:#A9700F;
+  --line:#E7E5DF;
+  --line-soft:#EFEDE7;
+  --card:#F4F2EC;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
-.page{max-width:660px;margin:0 auto;padding:72px 24px 120px}
-.tag{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:500;margin-bottom:20px}
-.tag--muted{color:var(--muted)}.tag--gold{color:var(--gold)}.tag--ghost{color:rgba(255,255,255,.45)}
-h1{font-family:'Newsreader',serif;font-size:clamp(26px,5vw,36px);line-height:1.28;font-weight:400;margin-bottom:16px}
-h2{font-family:'Newsreader',serif;font-size:21px;font-weight:400;margin-bottom:18px;line-height:1.35}
-.subtitle{font-size:15.5px;color:var(--muted);margin-bottom:48px;max-width:560px}
-.hr{width:36px;height:2px;background:var(--muted);opacity:.25;margin:48px 0}
-p{font-size:15px;margin-bottom:14px}
-.bullet{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
-.bullet-dot{min-width:6px;max-width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:9px}
-.bullet p{margin:0;font-size:14.5px;line-height:1.65}
-.step{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
-.step-num{font-size:12px;font-weight:500;color:var(--accent-mid);min-width:20px;padding-top:2px}
-.step p{margin:0;font-size:14.5px;line-height:1.65}
-.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin:40px 0}
-.metric{background:var(--surface);padding:24px 16px;text-align:center}
-.metric-val{font-family:'Newsreader',serif;font-size:30px;color:var(--accent-mid);line-height:1;margin-bottom:5px}
-.metric-lbl{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:500}
-.outcome{background:var(--accent);border-radius:10px;padding:36px 30px;margin:40px 0}
-.outcome h2,.outcome strong{color:#fff}
-.outcome p{color:rgba(255,255,255,.82);font-size:14.5px;line-height:1.65;margin-bottom:10px}
-.savings{display:inline-block;margin-top:12px;background:rgba(255,255,255,.12);padding:10px 18px;border-radius:6px;font-size:13.5px;color:rgba(255,255,255,.92);font-weight:500}
-.pricing{background:var(--card-bg);border-left:3px solid var(--accent-mid);padding:22px 26px;border-radius:0 8px 8px 0;margin:36px 0}
-.pricing p{margin:0;font-size:14.5px}
-.footer{margin-top:64px;padding-top:28px;border-top:1px solid var(--border)}
-.footer p{font-size:13px;color:var(--muted)}
-.contact{margin-top:16px;font-size:15px;font-weight:500}
-.contact a{color:var(--accent-mid);text-decoration:none;border-bottom:1px solid rgba(15,110,86,.25)}
-.contact a:hover{border-bottom-color:var(--accent-mid)}
-@media(max-width:520px){.page{padding:44px 18px 80px}.metrics{grid-template-columns:1fr 1fr}.metric{padding:20px 14px}.metric-val{font-size:24px}.outcome{padding:28px 22px}}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+.page{max-width:680px;margin:0 auto;padding:0 26px 130px}
+
+/* ---- masthead ---- */
+.masthead{
+  display:flex;align-items:center;gap:12px;
+  padding:30px 0 0;
+}
+.mark{
+  width:30px;height:30px;border-radius:8px;
+  background:var(--accent);color:var(--bg);
+  display:grid;place-items:center;flex:0 0 auto;
+  font-family:'Newsreader',serif;font-size:19px;line-height:1;
+  padding-bottom:2px;
+}
+.wordmark{display:flex;flex-direction:column;line-height:1.25}
+.wordmark .name{font-size:13.5px;font-weight:500;letter-spacing:.2px}
+.wordmark .role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint)}
+
+/* ---- eyebrows ---- */
+.eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:2.2px;text-transform:uppercase;
+  font-weight:500;display:inline-block;
+}
+.eyebrow--muted{color:var(--muted)}
+.eyebrow--gold{color:var(--gold)}
+.eyebrow--ghost{color:rgba(255,255,255,.5)}
+
+/* ---- type ---- */
+h1{
+  font-family:'Newsreader',serif;
+  font-size:clamp(29px,5.4vw,41px);
+  line-height:1.18;font-weight:400;letter-spacing:-.01em;
+  margin:18px 0 18px;text-wrap:balance;
+}
+h2{
+  font-family:'Newsreader',serif;
+  font-size:22px;font-weight:400;line-height:1.34;
+  margin:14px 0 22px;text-wrap:balance;
+}
+.subtitle{font-size:16px;color:var(--muted);max-width:580px;line-height:1.7}
+p{font-size:15.5px}
+
+/* ---- hero ---- */
+.hero{padding:64px 0 0}
+
+/* ---- section rhythm ---- */
+.section{padding:62px 0 0}
+.rule{height:1px;background:var(--line);margin:62px 0 0}
+
+/* ---- before: list ---- */
+.findings{margin-top:6px}
+.finding{
+  display:flex;gap:15px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid var(--line-soft);
+}
+.finding:last-child{border-bottom:0}
+.finding .dot{
+  flex:0 0 auto;width:6px;height:6px;border-radius:50%;
+  background:var(--gold);margin-top:10px;
+}
+.finding p{font-size:15px;line-height:1.62;margin:0}
+
+/* ---- metrics: the signature ---- */
+.metrics{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  margin:50px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.metric{
+  text-align:center;padding:30px 10px 28px;
+  position:relative;
+}
+.metric + .metric::before{
+  content:"";position:absolute;left:0;top:26px;bottom:26px;width:1px;background:var(--line);
+}
+.metric-val{
+  font-family:'Newsreader',serif;
+  font-size:clamp(34px,6.5vw,46px);
+  line-height:1;color:var(--accent-mid);
+  font-variant-numeric:lining-nums;letter-spacing:-.01em;
+  margin-bottom:9px;
+}
+.metric-lbl{
+  font-family:'DM Mono',monospace;
+  font-size:10px;text-transform:uppercase;letter-spacing:1.4px;
+  color:var(--muted);
+}
+
+/* ---- process: numbered sequence with spine ---- */
+.process{margin-top:8px;position:relative}
+.process::before{
+  content:"";position:absolute;left:11px;top:14px;bottom:18px;width:1px;
+  background:var(--line);
+}
+.step{
+  display:grid;grid-template-columns:24px 1fr;gap:18px;
+  align-items:start;padding:13px 0;position:relative;
+}
+.step-num{
+  font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
+  color:var(--accent-mid);background:var(--bg);
+  padding:3px 0 6px;position:relative;z-index:1;text-align:center;
+}
+.step p{font-size:15px;line-height:1.62;margin:0;padding-top:1px}
+
+/* ---- outcome: the one bold panel ---- */
+.outcome{
+  background:var(--accent-deep);
+  border-radius:14px;padding:42px 36px;margin:54px 0 0;
+  position:relative;overflow:hidden;
+}
+.outcome::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;
+  border-radius:50%;background:rgba(255,255,255,.035);
+}
+.outcome h2{color:#fff;margin-top:14px}
+.outcome p{color:rgba(255,255,255,.8);font-size:15px;line-height:1.66;margin-bottom:11px}
+.outcome p strong{color:#fff;font-weight:500}
+.savings{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:rgba(255,255,255,.1);
+  padding:11px 18px;border-radius:8px;
+  font-size:13.5px;color:rgba(255,255,255,.92);font-weight:500;
+  font-family:'DM Mono',monospace;letter-spacing:.2px;
+}
+
+/* ---- pricing ---- */
+.pricing{
+  background:var(--card);border-left:2px solid var(--accent-mid);
+  padding:22px 26px;border-radius:0 10px 10px 0;margin:40px 0 0;
+}
+.pricing p{margin:0;font-size:15px;line-height:1.6}
+.pricing strong{font-weight:500}
+
+/* ---- footer ---- */
+.footer{margin-top:66px;padding-top:30px;border-top:1px solid var(--line)}
+.footer p{font-size:13px;color:var(--muted);line-height:1.7}
+.contact{margin-top:22px;font-size:16px}
+.contact a{
+  color:var(--accent-mid);text-decoration:none;font-weight:500;
+  border-bottom:1px solid rgba(15,110,86,.28);
+  padding-bottom:1px;transition:border-color .25s ease;
+}
+.contact a:hover,.contact a:focus-visible{border-bottom-color:var(--accent-mid)}
+
+/* ---- focus ---- */
+a:focus-visible{outline:2px solid var(--accent-mid);outline-offset:3px;border-radius:2px}
+
+/* ---- motion ---- */
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+.load{opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.22,.61,.36,1) forwards}
+.load.d1{animation-delay:.05s}.load.d2{animation-delay:.16s}.load.d3{animation-delay:.27s}.load.d4{animation-delay:.38s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.load{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+}
+
+@media(max-width:560px){
+  .page{padding:0 18px 86px}
+  .hero{padding:46px 0 0}
+  .section{padding:48px 0 0}
+  .rule{margin:48px 0 0}
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric:nth-child(3)::before{display:none}
+  .metric:nth-child(3),.metric:nth-child(4){border-top:1px solid var(--line)}
+  .outcome{padding:32px 24px;margin:44px 0 0}
+}
 </style>
 </head>
 <body>
 <div class="page">
 
-<p class="tag tag--muted">Case study</p>
+  <header class="masthead load d1">
+    <div class="mark" aria-hidden="true">L</div>
+    <div class="wordmark">
+      <span class="name">Luka Tsiklauri</span>
+      <span class="role">Email Infrastructure</span>
+    </div>
+  </header>
 
-<h1>How a regional hotel group recovered their broken email &amp; unified two domains under Google&nbsp;Workspace</h1>
+  <section class="hero">
+    <span class="eyebrow eyebrow--muted load d2">Case study</span>
+    <h1 class="load d3">How a regional hotel group recovered their broken email &amp; unified two domains under Google&nbsp;Workspace</h1>
+    <p class="subtitle load d4">A multi-property hospitality business in the Caucasus region. Two business domains, 13 staff mailboxes, and over 50&nbsp;GB of historical email at risk of permanent loss. Client details withheld for confidentiality.</p>
+  </section>
 
-<p class="subtitle">A multi-property hospitality business in the Caucasus region. Two business domains, 13 staff mailboxes, and over 100 GB of historical email at risk of permanent loss. Client details withheld for confidentiality.</p>
+  <div class="rule reveal"></div>
 
-<div class="hr"></div>
+  <section class="section reveal">
+    <span class="eyebrow eyebrow--gold">The situation before</span>
+    <h2>Email was silently broken — and nobody knew.</h2>
+    <div class="findings">
+      <div class="finding"><span class="dot"></span><p>Incoming mail on one domain had been failing silently for an unknown period — staff didn't realize messages were being lost.</p></div>
+      <div class="finding"><span class="dot"></span><p>Mail infrastructure was fragmented across multiple providers, with one control panel completely inaccessible.</p></div>
+      <div class="finding"><span class="dot"></span><p>One domain was blocked from Google Workspace by a forgotten, abandoned configuration tied to it.</p></div>
+      <div class="finding"><span class="dot"></span><p>Outbound email was being flagged as spam by every major provider — guest communications were unreliable.</p></div>
+      <div class="finding"><span class="dot"></span><p>Over 50&nbsp;GB of historical email across 13 mailboxes was at risk of permanent loss during any provider change.</p></div>
+    </div>
 
-<p class="tag tag--gold">The situation before</p>
-<h2>Email was silently broken — and nobody knew.</h2>
+    <div class="metrics">
+      <div class="metric"><div class="metric-val">2</div><div class="metric-lbl">Domains</div></div>
+      <div class="metric"><div class="metric-val">13</div><div class="metric-lbl">Mailboxes</div></div>
+      <div class="metric"><div class="metric-val">140K+</div><div class="metric-lbl">Items</div></div>
+      <div class="metric"><div class="metric-val">50+</div><div class="metric-lbl">GB migrated</div></div>
+    </div>
+  </section>
 
-<div class="bullet"><div class="bullet-dot"></div><p>Incoming mail on one domain had been failing silently for an unknown period — staff didn't realize messages were being lost</p></div>
-<div class="bullet"><div class="bullet-dot"></div><p>Mail infrastructure was fragmented across multiple providers, with one control panel completely inaccessible</p></div>
-<div class="bullet"><div class="bullet-dot"></div><p>One domain was blocked from Google Workspace due to a forgotten, abandoned configuration tied to it</p></div>
-<div class="bullet"><div class="bullet-dot"></div><p>Outbound email was being flagged as spam by every major provider — guest communications were unreliable</p></div>
-<div class="bullet"><div class="bullet-dot"></div><p>Over 100 GB of historical email across 13 mailboxes was at risk of permanent loss during any provider change</p></div>
+  <div class="rule reveal"></div>
 
-<div class="metrics">
-<div class="metric"><div class="metric-val">2</div><div class="metric-lbl">Domains</div></div>
-<div class="metric"><div class="metric-val">13</div><div class="metric-lbl">Mailboxes</div></div>
-<div class="metric"><div class="metric-val">100K+</div><div class="metric-lbl">Items</div></div>
-<div class="metric"><div class="metric-val">100+</div><div class="metric-lbl">GB migrated</div></div>
+  <section class="section reveal">
+    <span class="eyebrow eyebrow--muted">What was done</span>
+    <h2>Full audit, recovery, migration, and documentation.</h2>
+    <div class="process">
+      <div class="step"><span class="step-num">01</span><p>Complete audit of the existing email infrastructure across all providers and hosting accounts.</p></div>
+      <div class="step"><span class="step-num">02</span><p>Recovery of the blocked domain — identified and resolved the underlying conflict, saving roughly three business days versus standard support timelines.</p></div>
+      <div class="step"><span class="step-num">03</span><p>Full reconfiguration of email authentication and deliverability settings on both domains.</p></div>
+      <div class="step"><span class="step-num">04</span><p>Provisioned 13 staff mailboxes across two domains under a single, unified Google Workspace tenant.</p></div>
+      <div class="step"><span class="step-num">05</span><p>Migrated over 140,000 historical items (50+&nbsp;GB) from two legacy mail sources with effectively zero data loss.</p></div>
+      <div class="step"><span class="step-num">06</span><p>Resolved outbound spam-flagging across all major email providers.</p></div>
+      <div class="step"><span class="step-num">07</span><p>Delivered full documentation and an architecture diagram for the client's records.</p></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="outcome">
+      <span class="eyebrow eyebrow--ghost">The outcome</span>
+      <h2>Clean setup. Zero data loss. Zero downtime.</h2>
+      <p>Both domains now run on a single Google Workspace tenant with one admin login. Staff kept working throughout — the migration ran entirely in the background.</p>
+      <p>Outbound deliverability fully restored. No more guest emails landing in spam.</p>
+      <p><strong>Zero business disruption. Zero data loss.</strong></p>
+      <div class="savings">Estimated savings: €183 / month by right-sizing the Workspace plan</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="pricing">
+      <p><strong>Fixed price, all-inclusive.</strong> No hourly billing, no scope surprises. 50% on project start, 50% on handover.</p>
+    </div>
+  </section>
+
+  <footer class="footer reveal">
+    <p>This project was completed as a fixed-price engagement. The client granted admin access to their existing infrastructure; the migration was executed in stages around daily operations, with no disruption to staff or guest communications.</p>
+    <p class="contact">Interested in a similar project? → <a href="mailto:l.tsiklauri.work@gmail.com">l.tsiklauri.work@gmail.com</a></p>
+  </footer>
+
 </div>
 
-<div class="hr"></div>
-
-<p class="tag tag--muted">What was done</p>
-<h2>Full audit, recovery, migration, and documentation.</h2>
-
-<div class="step"><span class="step-num">01</span><p>Complete audit of existing email infrastructure across all providers and hosting accounts</p></div>
-<div class="step"><span class="step-num">02</span><p>Recovery of the blocked domain — identified and resolved the underlying conflict, saving approximately three business days versus standard support timelines</p></div>
-<div class="step"><span class="step-num">03</span><p>Full reconfiguration of email authentication and deliverability settings on both domains</p></div>
-<div class="step"><span class="step-num">04</span><p>Provisioned 13 staff mailboxes across two domains under a single, unified Google Workspace tenant</p></div>
-<div class="step"><span class="step-num">05</span><p>Migrated over 100,000 historical items (100+ GB) from two legacy mail sources with effectively zero data loss</p></div>
-<div class="step"><span class="step-num">06</span><p>Resolved outbound spam-flagging across all major email providers</p></div>
-<div class="step"><span class="step-num">07</span><p>Delivered full documentation and architecture diagram for the client's records</p></div>
-
-<div class="hr"></div>
-
-<div class="outcome">
-<p class="tag tag--ghost">The outcome</p>
-<h2>Clean setup. Zero data loss. Zero downtime.</h2>
-<p>Both domains now run on a single Google Workspace tenant with one admin login. Staff continued working throughout — the migration ran entirely in the background.</p>
-<p>Outbound deliverability fully restored. No more guest emails landing in spam.</p>
-<p><strong>Zero business disruption. Zero data loss.</strong></p>
-<div class="savings">Estimated savings: €183/month by right-sizing the Workspace plan</div>
-</div>
-
-<div class="pricing">
-<p><strong>Fixed price, all-inclusive.</strong> No hourly billing, no scope surprises. 50% on project start, 50% on handover.</p>
-</div>
-
-<div class="footer">
-<p>This project was completed as a fixed-price engagement. The client granted admin access to their existing infrastructure; the migration was executed in stages around daily operations with no disruption to staff or guest communications.</p>
-<p class="contact">Interested in a similar project? → <a href="mailto:l.tsiklauri.work@gmail.com">l.tsiklauri.work@gmail.com</a></p>
-</div>
-
-</div>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    els.forEach(function(e){e.classList.add('in')});
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
 </body>
 </html>
