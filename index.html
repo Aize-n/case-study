@@ -47,25 +47,56 @@ body{
   line-height:1.72;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+  position:relative;
 }
 
-.page{max-width:680px;margin:0 auto;padding:0 26px 130px}
+/* ---- ambient warm-cream backdrop ---- */
+.atmosphere{
+  position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+}
+.atmosphere span{
+  position:absolute;border-radius:50%;
+  filter:blur(70px);will-change:transform;
+}
+.atmosphere .aura1{
+  width:46vw;height:46vw;min-width:340px;min-height:340px;
+  top:-12vh;left:-8vw;opacity:.65;
+  background:radial-gradient(circle at 50% 50%,#F1E6D0,rgba(241,230,208,0) 70%);
+  animation:drift1 38s ease-in-out infinite;
+}
+.atmosphere .aura2{
+  width:42vw;height:42vw;min-width:320px;min-height:320px;
+  top:34%;right:-12vw;opacity:.55;
+  background:radial-gradient(circle at 50% 50%,#EFE8DC,rgba(239,232,220,0) 70%);
+  animation:drift2 46s ease-in-out infinite;
+}
+.atmosphere .aura3{
+  width:54vw;height:54vw;min-width:380px;min-height:380px;
+  bottom:-16vh;left:18vw;opacity:.5;
+  background:radial-gradient(circle at 50% 50%,rgba(15,110,86,.07),rgba(15,110,86,0) 70%);
+  animation:drift3 54s ease-in-out infinite;
+}
+@keyframes drift1{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(46px,34px,0) scale(1.09)}}
+@keyframes drift2{0%,100%{transform:translate3d(0,0,0) scale(1.04)}50%{transform:translate3d(-40px,28px,0) scale(1)}}
+@keyframes drift3{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(34px,-36px,0) scale(1.07)}}
+
+.page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 26px 130px}
 
 /* ---- masthead ---- */
 .masthead{
-  display:flex;align-items:center;gap:12px;
-  padding:30px 0 0;
+  display:flex;align-items:center;gap:15px;
+  padding:48px 0 0;
 }
 .mark{
-  width:30px;height:30px;border-radius:8px;
+  width:38px;height:38px;border-radius:10px;
   background:var(--accent);color:var(--bg);
   display:grid;place-items:center;flex:0 0 auto;
-  font-family:'Newsreader',serif;font-size:19px;line-height:1;
+  font-family:'Newsreader',serif;font-size:23px;line-height:1;
   padding-bottom:2px;
 }
-.wordmark{display:flex;flex-direction:column;line-height:1.25}
-.wordmark .name{font-size:13.5px;font-weight:500;letter-spacing:.2px}
-.wordmark .role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:var(--faint)}
+.wordmark{display:flex;flex-direction:column;gap:4px;line-height:1.1}
+.wordmark .name{font-size:14.5px;font-weight:500;letter-spacing:.2px}
+.wordmark .role{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--faint)}
 
 /* ---- eyebrows ---- */
 .eyebrow{
@@ -207,6 +238,7 @@ a:focus-visible{outline:2px solid var(--accent-mid);outline-offset:3px;border-ra
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .reveal,.load{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+  .atmosphere span{animation:none!important}
 }
 
 @media(max-width:560px){
@@ -222,6 +254,7 @@ a:focus-visible{outline:2px solid var(--accent-mid);outline-offset:3px;border-ra
 </style>
 </head>
 <body>
+<div class="atmosphere" aria-hidden="true"><span class="aura1"></span><span class="aura2"></span><span class="aura3"></span></div>
 <div class="page">
 
   <header class="masthead load d1">
@@ -299,20 +332,31 @@ a:focus-visible{outline:2px solid var(--accent-mid);outline-offset:3px;border-ra
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 <script>
 (function(){
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll reveals
   var els = document.querySelectorAll('.reveal');
   if(reduce || !('IntersectionObserver' in window)){
     els.forEach(function(e){e.classList.add('in')});
-    return;
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    els.forEach(function(e){io.observe(e)});
   }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-    });
-  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
-  els.forEach(function(e){io.observe(e)});
+
+  // Smooth scroll (graceful native fallback if Lenis or motion is unavailable)
+  if(!reduce && window.Lenis){
+    document.documentElement.style.scrollBehavior = 'auto';
+    var lenis = new Lenis({ lerp:0.085, wheelMultiplier:1, smoothWheel:true, smoothTouch:false });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
 })();
 </script>
 </body>
